@@ -19,8 +19,6 @@ public class Application {
 
                 try {
                     method.invoke(address);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
