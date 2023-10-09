@@ -23,12 +23,14 @@ public class Application {
     // BEGIN
 
     @GetMapping("/pages")
-    public List<Post> index(@RequestParam(defaultValue = "10") Integer limit ){
-        return posts.stream().toList();
+    public List<Post> index(@RequestParam(defaultValue = "1") Integer page,
+                            @RequestParam(defaultValue = "10") Integer limit) {
+
+        return posts.stream().skip((page - 1) * limit).limit(limit).toList();
     }
 
     @GetMapping("/pages/{id}")
-    public Optional<Post> show(@PathVariable String id){
+    public Optional<Post> show(@PathVariable String id) {
         var stream = posts.stream()
                 .filter(a -> a.getId().equals(id))
                 .findFirst();
@@ -37,13 +39,13 @@ public class Application {
     }
 
     @PostMapping("/pages")
-    public Post create(@RequestParam Post post){
+    public Post create(@RequestParam Post post) {
         posts.add(post);
         return post;
     }
 
     @DeleteMapping("/pages/{id}")
-    public void destroy(@RequestParam String id){
+    public void destroy(@RequestParam String id) {
         posts.removeIf(r -> r.getId().equals(id));
     }
 
