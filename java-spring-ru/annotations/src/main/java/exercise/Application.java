@@ -12,10 +12,15 @@ public class Application {
 
         // BEGIN
 
-        for (Method method: address.getClass().getDeclaredMethods()){
-            if (method.isAnnotationPresent(Inspect.class)){
+        for (Method method : address.getClass().getDeclaredMethods()) {
 
-                System.out.println("Method "+method.getName()+" return type and name "+method.getReturnType().getSimpleName());
+            if (method.isAnnotationPresent(Inspect.class)) {
+
+                System.out.println("Method "
+                        + method.getName()
+                        + " returns a value of type "
+                        + method.getReturnType().getSimpleName()
+                );
 
                 try {
                     method.invoke(address);
