@@ -5,6 +5,7 @@ import exercise.annotation.Inspect;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -27,7 +28,6 @@ public class Application {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
 
