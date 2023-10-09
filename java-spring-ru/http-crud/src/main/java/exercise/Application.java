@@ -1,6 +1,7 @@
 package exercise;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.boot.SpringApplication;
@@ -27,10 +28,10 @@ public class Application {
     }
 
     @GetMapping("/pages/{id}")
-    public Stream<Post> show(@PathVariable Integer id){
-        Stream<Post> stream = posts.stream()
+    public Optional<Post> show(@PathVariable String id){
+        var stream = posts.stream()
                 .filter(a -> a.getId().equals(id))
-                .limit(1);
+                .findFirst();
         return stream;
 
     }
