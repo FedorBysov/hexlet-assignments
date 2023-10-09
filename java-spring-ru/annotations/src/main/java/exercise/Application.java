@@ -15,7 +15,7 @@ public class Application {
         for (Method method: address.getClass().getDeclaredMethods()){
             if (method.isAnnotationPresent(Inspect.class)){
 
-                System.out.println("Method "+"return type and name "+method.getReturnType().getSimpleName());
+                System.out.println("Method "+method.getName()+" return type and name "+method.getReturnType().getSimpleName());
 
                 try {
                     method.invoke(address);
