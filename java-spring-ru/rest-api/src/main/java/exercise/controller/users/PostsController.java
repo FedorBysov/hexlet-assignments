@@ -36,7 +36,7 @@ class PostsController{
         return stream;
     }
 
-    @GetMapping("/posts/{id}/posts")
+    @GetMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
     public Post create(@PathVariable int id, @RequestBody Post posts){
         posts.setUserId(id);
