@@ -11,5 +11,6 @@ public class Post {
     private int userId;
     private String slug;
     private String title;
+
     private String body;
 }
