@@ -31,14 +31,13 @@ class PostsController{
     List<Post> data = Data.getPosts();
 
     @GetMapping("/users/{id}/posts")
-    public List<Post> show(@PathVariable int id){
-        var stream = data.stream().filter(a ->a.getUserId() == id).toList();
-        return stream;
+    public List<Post> show(@PathVariable Integer id){
+        return data.stream().filter(a ->a.getUserId() == id).toList();
     }
 
-    @GetMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post create(@PathVariable int id, @RequestBody Post posts){
+    @PostMapping("/users/{id}/posts")
+    public Post create(@PathVariable Integer id, @RequestBody Post posts){
         posts.setUserId(id);
         data.add(posts);
         return posts;
