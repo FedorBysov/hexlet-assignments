@@ -33,8 +33,8 @@ public class Application {
     public ResponseEntity<Post> create(@RequestBody Post post) {
         posts.add(post);
         URI location = URI.create("/posts");
-        var body = ResponseEntity.created(location).body(post);
-        return body;
+
+        return ResponseEntity.created(location).body(post);
     }
 
     @GetMapping("/posts")
