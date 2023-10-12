@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import exercise.model.Post;
@@ -63,6 +64,7 @@ public class Application {
         return data;
     }
 
+    
 
 
     // END
