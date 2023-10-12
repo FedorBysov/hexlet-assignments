@@ -60,18 +60,17 @@ public class Application {
     @PutMapping("/posts/{id}")
     public ResponseEntity<Post> update(@PathVariable String id, @RequestBody Post data) {
         var maybePost = posts.stream()
-                .filter(a -> a.getId().equals(id))
+                .filter(p -> p.getId().equals(id))
                 .findFirst();
         var status = HttpStatus.NO_CONTENT;
-        if (maybePost.isEmpty()){
-            var postData = maybePost.get();
-            postData.setId(data.getId());
-            postData.setTitle(data.getTitle());
-            postData.setBody(data.getBody());
+        if (maybePost.isPresent()) {
+            var post = maybePost.get();
+            post.setId(data.getId());
+            post.setTitle(data.getTitle());
+            post.setBody(data.getBody());
             status = HttpStatus.OK;
         }
         return ResponseEntity.status(status).body(data);
-
     }
 
 
