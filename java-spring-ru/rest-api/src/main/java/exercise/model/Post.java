@@ -6,8 +6,6 @@ public class Post {
     private String title;
     private String body;
 
-    public Post() {
-    }
 
     public int getUserId() {
         return this.userId;
