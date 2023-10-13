@@ -1,16 +1,9 @@
 package exercise.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -37,7 +30,27 @@ public class ProductsController {
     }
 
     // BEGIN
-    
+
+    @GetMapping("/{id}")
+    public Product show(@PathVariable long id){
+        var product = productRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Product with id " + id + " not found"));
+        return product;
+    }
+
+
+
+    @PutMapping("/{id}")
+    public Product update(@PathVariable Long id, @RequestBody Product product){
+        var maybeProduct = productRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Product with id " + id + " not found"));
+        maybeProduct.setPrice(product.getPrice());
+        maybeProduct.setTitle(product.getTitle());
+
+        productRepository.save(maybeProduct);
+        return product;
+    }
+
     // END
 
     @DeleteMapping(path = "/{id}")
