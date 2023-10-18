@@ -64,7 +64,7 @@ public class ProductsController {
        toEntity(productUpdateDTO, product);
        productRepository.save(product);
        var productDto = toDTO(product);
-        
+
         return productDto;
     }
 
